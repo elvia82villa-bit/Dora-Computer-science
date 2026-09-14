@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dora Orozco Villalobos — Computer Science Portfolio</title>
+<meta name="description" content="Computer Science student portfolio — networking &amp; security, algorithms, machine learning, and mobile development coursework.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2218%22 fill=%22%2310141A%22/><circle cx=%2228%22 cy=%2228%22 r=%227%22 fill=%22%23E8A33D%22/><circle cx=%2272%22 cy=%2228%22 r=%227%22 fill=%22%235FB3B3%22/><circle cx=%2250%22 cy=%2272%22 r=%227%22 fill=%22%23E8A33D%22/><line x1=%2228%22 y1=%2228%22 x2=%2272%22 y2=%2228%22 stroke=%22%232A323D%22 stroke-width=%224%22/><line x1=%2228%22 y1=%2228%22 x2=%2250%22 y2=%2272%22 stroke=%22%232A323D%22 stroke-width=%224%22/><line x1=%2272%22 y1=%2228%22 x2=%2250%22 y2=%2272%22 stroke=%22%232A323D%22 stroke-width=%224%22/></svg>">
+
+<!-- Open Graph -->
+<meta property="og:title" content="Dora Orozco Villalobos — Computer Science Portfolio">
+<meta property="og:description" content="Networking & security, algorithms, machine learning, and mobile development coursework.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --bg: #10141A;
+    --surface: #171D26;
+    --surface-alt: #1C232E;
+    --border: #2A323D;
+    --text: #E7ECF1;
+    --text-muted: #8D99A8;
+    --text-faint: #75828F;
+    --accent: #E8A33D;
+    --accent-dim: #B98230;
+    --teal: #5FB3B3;
+    --max-w: 740px;
+    --sidebar-w: 248px;
+  }
+
+  *{ box-sizing: border-box; }
+  html{ scroll-behavior: smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    *{ animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  }
+
+  body{
+    margin:0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', -apple-system, sans-serif;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  a{ color: var(--accent); text-decoration: none; }
+  a:hover{ text-decoration: underline; }
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+  }
+
+  h1, h2, h3, h4{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 600;
+    line-height: 1.2;
+    margin: 0 0 .5em 0;
+    color: #fff;
+  }
+
+  .skip-link{
+    position: absolute; left: -999px; top: 0;
+    background: var(--accent); color: #10141A; padding: 10px 16px;
+    z-index: 200; font-weight: 600; border-radius: 0 0 6px 0;
+  }
+  .skip-link:focus{ left: 0; }
+
+  /* ---------- Layout shell ---------- */
+  .shell{
+    display: flex;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+
+  .sidebar{
+    width: var(--sidebar-w);
+    flex-shrink: 0;
+    position: sticky;
+    top: 0;
+    align-self: flex-start;
+    height: 100vh;
+    padding: 40px 28px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .sidebar-top .mark{
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: #fff;
+    display:flex; align-items:center; gap:10px;
+    margin-bottom: 34px;
+  }
+  .mark svg{ flex-shrink:0; }
+
+  .side-nav{ list-style:none; margin:0; padding:0; }
+  .side-nav li{ margin-bottom: 4px; }
+  .side-nav a{
+    display:block;
+    color: var(--text-muted);
+    font-size: .92rem;
+    padding: 7px 10px;
+    border-radius: 5px;
+    transition: background-color .15s ease, color .15s ease;
+  }
+  .side-nav a:hover{ color: var(--text); text-decoration:none; background: var(--surface); }
+  .side-nav a.active{ color: var(--accent); background: var(--surface); }
+
+  .sidebar-bottom{ font-family:'IBM Plex Mono', monospace; font-size: .78rem; color: var(--text-faint); }
+  .sidebar-links{ display:flex; flex-direction:column; gap:8px; margin-bottom:14px;}
+  .sidebar-links a{ color: var(--text-muted); font-size:.86rem; }
+  .sidebar-links a:hover{ color: var(--accent); }
+
+  .mobile-bar{
+    display:none;
+    position: sticky; top:0; z-index:100;
+    background: rgba(16,20,26,.94);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 20px;
+    align-items:center; justify-content:space-between;
+  }
+  .mobile-bar .mark{ font-family:'Space Grotesk',sans-serif; font-weight:700; color:#fff; display:flex; align-items:center; gap:8px; font-size:1rem;}
+  .mobile-bar button{
+    background:none; border:1px solid var(--border); color:var(--text);
+    border-radius:6px; padding:7px 11px; font-family:'IBM Plex Mono',monospace; font-size:.82rem;
+  }
+  .mobile-menu{
+    display:none;
+    background: var(--surface);
+    border-bottom:1px solid var(--border);
+    padding: 10px 20px 18px;
+  }
+  .mobile-menu.open{ display:block; }
+  .mobile-menu ul{ list-style:none; margin:0; padding:0; }
+  .mobile-menu a{ display:block; padding:9px 4px; color: var(--text-muted); border-bottom:1px solid var(--border); font-size:.94rem;}
+  .mobile-menu a:last-child{ border-bottom:none; }
+
+  main{
+    flex: 1;
+    min-width: 0;
+    padding: 64px 48px 100px;
+  }
+
+  section{ max-width: var(--max-w); margin: 0 auto 88px; scroll-margin-top: 24px; }
+  section:last-of-type{ margin-bottom: 40px; }
+
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--teal);
+    font-size: .82rem;
+    margin: 0 0 10px 0;
+  }
+
+  p{ color: var(--text); }
+  .muted{ color: var(--text-muted); }
+
+  /* ---------- Hero ---------- */
+  #hero{ margin-top:0; }
+  .hero-name{ font-size: 2.6rem; margin-bottom: 6px; }
+  .hero-role{ font-family:'IBM Plex Mono', monospace; color: var(--accent); font-size: 1rem; margin-bottom: 22px; }
+  .hero-statement{ font-size: 1.08rem; color: var(--text); max-width: 62ch; margin-bottom: 26px; }
+  .hero-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .84rem;
+    color: var(--text-muted);
+    display:flex; flex-wrap:wrap; gap: 6px 0;
+    margin-bottom: 26px;
+  }
+  .hero-meta span:not(:last-child)::after{ content:"·"; margin: 0 10px; color: var(--text-faint); }
+  .hero-contacts{ display:flex; flex-wrap:wrap; gap: 22px; }
+  .hero-contacts a{ font-size: .95rem; color: var(--text); display:flex; align-items:center; gap:7px; }
+  .hero-contacts a:hover{ color: var(--accent); }
+  .hero-contacts svg{ opacity:.8; }
+
+  /* ---------- About / Education ---------- */
+  .card{
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 22px 24px;
+  }
+
+  .edu-item{ display:flex; gap:18px; padding: 16px 0; border-bottom:1px solid var(--border); }
+  .edu-item:last-child{ border-bottom:none; }
+  .edu-year{ font-family:'IBM Plex Mono', monospace; color:var(--text-faint); font-size:.82rem; width:110px; flex-shrink:0; padding-top:3px;}
+  .edu-body h3{ font-size:1.05rem; margin-bottom:3px; }
+  .edu-body .org{ color: var(--teal); font-size:.92rem; margin-bottom:6px; font-family:'IBM Plex Mono',monospace; }
+  .edu-body p{ color: var(--text-muted); font-size:.94rem; margin:0; }
+
+  /* ---------- Skills ---------- */
+  .skills-grid{ display:grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width:600px){ .skills-grid{ grid-template-columns:1fr; } }
+  .skill-group h3{
+    font-family:'IBM Plex Mono', monospace;
+    color: var(--text-muted);
+    font-size:.82rem;
+    font-weight:500;
+    text-transform: none;
+    margin-bottom: 12px;
+    padding-bottom:8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-tags{ display:flex; flex-wrap:wrap; gap:8px; }
+  .skill-tag{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.82rem;
+    color: var(--text);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 5px 10px;
+    border-radius: 5px;
+  }
+
+  /* ---------- Projects ---------- */
+  .project{
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    margin-bottom: 18px;
+    overflow: hidden;
+  }
+  .project-head{
+    display:flex; align-items:flex-start; justify-content:space-between; gap:16px;
+    padding: 20px 22px;
+    cursor: pointer;
+    list-style:none;
+  }
+  .project-head::-webkit-details-marker{ display:none; }
+  .project-head:hover{ background: var(--surface-alt); }
+  .project-titles h3{ font-size: 1.08rem; margin-bottom:5px; }
+  .project-course{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.78rem;
+    color: var(--teal);
+    margin-bottom:8px;
+  }
+  .project-summary{ color: var(--text-muted); font-size:.93rem; margin:0; max-width:56ch; }
+  .chevron{
+    flex-shrink:0;
+    margin-top:4px;
+    transition: transform .2s ease;
+    color: var(--text-faint);
+  }
+  details[open] .chevron{ transform: rotate(90deg); color: var(--accent); }
+
+  .project-body{ padding: 4px 22px 26px; border-top: 1px solid var(--border); }
+  .project-body h4{ font-size:.95rem; color: var(--text); margin: 20px 0 8px; }
+  .project-body p{ font-size:.94rem; color: var(--text-muted); }
+  .project-body ul{ color: var(--text-muted); font-size:.94rem; padding-left: 20px;}
+  .project-body li{ margin-bottom:4px; }
+
+  pre{
+    background: #0C0F14;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 16px 18px;
+    overflow-x: auto;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .82rem;
+    line-height: 1.55;
+    color: #C9D6E3;
+    margin: 12px 0 18px;
+  }
+  code{ font-family:'IBM Plex Mono', monospace; font-size: .88em; color: var(--accent); }
+  pre code{ color: inherit; }
+
+  .shot-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; margin: 14px 0 6px; }
+  @media (max-width:600px){ .shot-grid{ grid-template-columns:1fr; } }
+  .shot-grid figure{ margin:0; }
+  .shot-grid img{ width:100%; display:block; border-radius:6px; border:1px solid var(--border); }
+  .shot-grid figcaption{ font-family:'IBM Plex Mono', monospace; font-size:.74rem; color:var(--text-faint); margin-top:6px; }
+
+  .result-box{
+    background: var(--surface-alt);
+    border-left: 3px solid var(--accent);
+    padding: 12px 16px;
+    font-size: .9rem;
+    color: var(--text);
+    border-radius: 0 5px 5px 0;
+    margin: 14px 0;
+  }
+
+  /* ---------- Coursework grid ---------- */
+  .coursework-course{ margin-bottom: 28px; }
+  .coursework-course h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:.86rem;
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+  .cw-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:10px; }
+  @media (max-width:600px){ .cw-grid{ grid-template-columns:1fr; } }
+  .cw-item{
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding: 12px 14px;
+    background: var(--surface);
+  }
+  .cw-item h4{ font-family:'IBM Plex Sans',sans-serif; font-size:.92rem; color:var(--text); margin:0 0 4px; font-weight:600;}
+  .cw-item p{ font-size:.83rem; color:var(--text-muted); margin:0; }
+
+  /* ---------- Contact / footer ---------- */
+  #contact .card{ text-align:left; }
+  .contact-row{ display:flex; flex-wrap:wrap; gap: 28px; margin-top: 18px; }
+  .contact-row a{ display:flex; align-items:center; gap:9px; font-size:1rem; color:var(--text); }
+  .contact-row a:hover{ color:var(--accent); }
+
+  footer{
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding-top: 30px;
+    border-top: 1px solid var(--border);
+    font-family:'IBM Plex Mono', monospace;
+    font-size: .78rem;
+    color: var(--text-faint);
+  }
+
+  @media (max-width: 880px){
+    .sidebar{ display:none; }
+    .mobile-bar{ display:flex; }
+    main{ padding: 44px 22px 80px; }
+    .hero-name{ font-size: 2.05rem; }
+  }
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<div class="mobile-bar">
+  <div class="mark">
+    <svg width="22" height="22" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="#171D26"/><circle cx="28" cy="28" r="7" fill="#E8A33D"/><circle cx="72" cy="28" r="7" fill="#5FB3B3"/><circle cx="50" cy="72" r="7" fill="#E8A33D"/><line x1="28" y1="28" x2="72" y2="28" stroke="#2A323D" stroke-width="4"/><line x1="28" y1="28" x2="50" y2="72" stroke="#2A323D" stroke-width="4"/><line x1="72" y1="28" x2="50" y2="72" stroke="#2A323D" stroke-width="4"/></svg>
+    Dora Orozco
+  </div>
+  <button id="menuToggle" aria-expanded="false" aria-controls="mobileMenu">Menu</button>
+</div>
+<nav class="mobile-menu" id="mobileMenu" aria-label="Section navigation">
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Featured Projects</a></li>
+    <li><a href="#coursework">All Coursework</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="shell">
+  <aside class="sidebar">
+    <div class="sidebar-top">
+      <div class="mark">
+        <svg width="24" height="24" viewBox="0 0 100 100"><rect width="100" height="100" rx="18" fill="#171D26"/><circle cx="28" cy="28" r="7" fill="#E8A33D"/><circle cx="72" cy="28" r="7" fill="#5FB3B3"/><circle cx="50" cy="72" r="7" fill="#E8A33D"/><line x1="28" y1="28" x2="72" y2="28" stroke="#2A323D" stroke-width="4"/><line x1="28" y1="28" x2="50" y2="72" stroke="#2A323D" stroke-width="4"/><line x1="72" y1="28" x2="50" y2="72" stroke="#2A323D" stroke-width="4"/></svg>
+        Dora Orozco
+      </div>
+      <nav aria-label="Section navigation">
+        <ul class="side-nav" id="sideNav" role="list">
+          <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#skills">Technical Skills</a></li>
+          <li><a href="#projects">Featured Projects</a></li>
+          <li><a href="#coursework">All Coursework</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="sidebar-bottom" aria-label="Contact links">
+      <div class="sidebar-links">
+        <a href="mailto:elvia82villa@gmail.com">elvia82villa@gmail.com</a>
+        <a href="https://github.com/elvia82villa-bit" target="_blank" rel="noopener">github.com/elvia82villa-bit</a>
+        <a href="https://www.linkedin.com/in/dora-orozco-villalobos-2966a8ba/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+      updated 2026
+    </div>
+  </aside>
+
+  <main id="main-content">
+
+    <section id="hero">
+      <p class="eyebrow">computer science portfolio</p>
+      <h1 class="hero-name">Dora Orozco Villalobos</h1>
+      <p class="hero-role">Backend Developer · Cybersecurity · Cloud Security</p>
+      <p class="hero-statement">
+        Computer Science graduate with a technical foundation across network security, systems programming,
+        algorithm design, and machine learning — paired with over six years of project management and
+        administrative experience delivering construction and community projects on schedule and on budget.
+      </p>
+      <div class="hero-meta">
+        <span>Edmonton, AB</span>
+        <span>B.Sc. Computer Science — University of the People (2023–2026)</span>
+        <span>Python · Java · Kotlin · Swift · Bash</span>
+      </div>
+      <div class="hero-contacts">
+        <a href="mailto:elvia82villa@gmail.com">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" stroke-linejoin="round"/><path d="m4 4 8 8 8-8" stroke-linejoin="round"/></svg>
+          elvia82villa@gmail.com
+        </a>
+        <a href="https://github.com/elvia82villa-bit" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.46-1.19-1.11-1.51-1.11-1.51-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .28.18.61.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+          GitHub
+        </a>
+        <a href="https://www.linkedin.com/in/dora-orozco-villalobos-2966a8ba/" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48Z"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </section>
+
+    <section id="about">
+      <p class="eyebrow">01 — about</p>
+      <h2>About</h2>
+      <p>
+        I'm a Computer Science graduate of the University of the People with an interest in backend
+        development, cybersecurity, and cloud security. My coursework spans packet-level network analysis,
+        Unix/Linux systems internals, algorithm design and complexity analysis, native mobile app development
+        on iOS and Android, and applied machine learning — from classical models to neural networks.
+      </p>
+      <p>
+        Alongside my technical background, I bring over six years of project management and administrative
+        experience in the construction industry and community programs — developing schedules and budgets,
+        coordinating stakeholders, managing risk, and delivering projects on time. I'm drawn to roles where
+        analytical, technical problem-solving meets structured project delivery.
+      </p>
+      <p>
+        I like working close to the fundamentals: understanding what a TCP handshake actually looks like on
+        the wire, why an algorithm's Big-O bound matters in practice, or how a model's confusion matrix tells
+        you where it's actually failing. This portfolio collects the strongest project work from my CS
+        coursework, alongside my professional project management background.
+      </p>
+    </section>
+
+    <section id="education">
+      <p class="eyebrow">02 — education</p>
+      <h2>Education</h2>
+      <div class="card">
+        <div class="edu-item">
+          <div class="edu-year">Apr 2023 – Aug 2026</div>
+          <div class="edu-body">
+            <h3>B.Sc. Computer Science</h3>
+            <div class="org">University of the People</div>
+            <p>Coursework across networking &amp; security, operating systems, algorithms, mobile application
+              development, database systems, and machine learning.</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2014 – 2016</div>
+          <div class="edu-body">
+            <h3>Master's Degree, Project Administration</h3>
+            <div class="org">University for International Cooperation, Quintana Roo, México</div>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2011 – 2014</div>
+          <div class="edu-body">
+            <h3>Bachelor's Degree, Engineering — Project Management</h3>
+            <div class="org">University of Guanajuato, Guanajuato, México</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <p class="eyebrow">03 — professional experience</p>
+      <h2>Professional Experience</h2>
+      <div class="card">
+        <div class="edu-item">
+          <div class="edu-year">2020 – Present</div>
+          <div class="edu-body">
+            <h3>Assistant Project Manager</h3>
+            <div class="org">Mich Drywall Ltd., Edmonton, AB</div>
+            <p>Develop schedules, budgets, risk management, and communication plans; prepare progress reports
+              and lead project management knowledge-sharing sessions.</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2016</div>
+          <div class="edu-body">
+            <h3>Construction Project Manager</h3>
+            <div class="org">Buenos Construction Ltd., Edmonton, AB</div>
+            <p>Planned scope, time, and cost for a private home construction project; delivered 7% under
+              a CAD $235,600 budget.</p>
+          </div>
+        </div>
+        <div class="edu-item">
+          <div class="edu-year">2013 – 2014</div>
+          <div class="edu-body">
+            <h3>Project Manager</h3>
+            <div class="org">Municipality of Jungapeo, Michoacán, México</div>
+            <p>Managed and evaluated a 30+ person training team; led project management meetings and budget
+              forecasting.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <p class="eyebrow">04 — technical skills</p>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <h3>Languages</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">Kotlin</span>
+            <span class="skill-tag">Swift</span>
+            <span class="skill-tag">Bash</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Networking &amp; Security</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">TCP/IP</span>
+            <span class="skill-tag">HTTP</span>
+            <span class="skill-tag">ICMP</span>
+            <span class="skill-tag">DNS / ARP</span>
+            <span class="skill-tag">VPNs</span>
+            <span class="skill-tag">Wireshark</span>
+            <span class="skill-tag">Unix/Linux Permissions</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Machine Learning &amp; Data</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">pandas</span>
+            <span class="skill-tag">NumPy</span>
+            <span class="skill-tag">Matplotlib</span>
+            <span class="skill-tag">Regression</span>
+            <span class="skill-tag">Classification</span>
+            <span class="skill-tag">Clustering</span>
+            <span class="skill-tag">Neural Networks</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Mobile &amp; Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">SwiftUI</span>
+            <span class="skill-tag">Android / Kotlin</span>
+            <span class="skill-tag">Git / GitHub</span>
+            <span class="skill-tag">Vim / Emacs</span>
+            <span class="skill-tag">cron</span>
+            <span class="skill-tag">Homebrew</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Algorithms &amp; Systems</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Dynamic Programming</span>
+            <span class="skill-tag">Backtracking</span>
+            <span class="skill-tag">Greedy Algorithms</span>
+            <span class="skill-tag">Graph Algorithms</span>
+            <span class="skill-tag">File Systems</span>
+            <span class="skill-tag">RPC</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <p class="eyebrow">05 — featured projects</p>
+      <h2>Featured Projects</h2>
+      <p class="muted" style="margin-bottom:24px; font-size:.94rem;">Expand any project for the full write-up, code, and results.</p>
+
+      <!-- PROJECT 1: Dijkstra -->
+      <details class="project" id="dijkstra">
+        <summary class="project-head">
+          <div class="project-titles">
+            <h3>Shortest-Path Routing with Dijkstra's Algorithm</h3>
+            <div class="project-course">Analysis of Algorithms</div>
+            <p class="project-summary">Priority-queue implementation for a delivery-routing scenario, stress-tested against three edge cases and benchmarked at 10/50/100-node scale.</p>
+          </div>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+        </summary>
+        <div class="project-body">
+          <p>Implemented Dijkstra's single-source shortest-path algorithm using a binary heap
+          (Python's <code>heapq</code>) for a navigation scenario: routing a delivery vehicle from a
+          warehouse to multiple destinations across a road network, where edge weights represent
+          travel time.</p>
+
+          <h4>Core implementation</h4>
+          <pre><code>import heapq
+
+def dijkstra(graph, source):
+    if not graph:
+        return {}
+
+    nodes = set(graph.keys())
+    for node in graph:
+        for neighbor, _ in graph[node]:
+            nodes.add(neighbor)
+
+    distances = {node: float('inf') for node in nodes}
+    distances[source] = 0
+    priority_queue = [(0, source)]
+
+    while priority_queue:
+        current_distance, current_node = heapq.heappop(priority_queue)
+        if current_distance > distances[current_node]:
+            continue
+        for neighbor, weight in graph.get(current_node, []):
+            new_distance = current_distance + weight
+            if new_distance < distances[neighbor]:
+                distances[neighbor] = new_distance
+                heapq.heappush(priority_queue, (new_distance, neighbor))
+    return distances</code></pre>
+
+          <h4>Edge-case testing</h4>
+          <p>Verified correctness against three edge cases beyond the happy path: an empty graph
+          (returns immediately with no error), a disconnected graph (unreachable nodes correctly
+          keep distance = infinity), and a graph containing a cycle (the algorithm terminates
+          correctly since stale queue entries are skipped).</p>
+
+          <h4>Complexity &amp; benchmarking</h4>
+          <p>Compared a naive O(V²) array-scan approach against the O((V + E) log V) binary-heap
+          approach, then benchmarked actual execution time on randomly generated graphs:</p>
+          <div class="result-box">10 nodes: 0.0099 ms &nbsp;·&nbsp; 50 nodes: 0.0561 ms &nbsp;·&nbsp; 100 nodes: 0.1129 ms</div>
+          <p>Growth was gradual rather than steep, consistent with the theoretical O((V+E) log V) bound —
+          confirming the heap-based approach scales well for real-time route planning in small-to-medium
+          road networks.</p>
+
+          <div class="shot-grid">
+            <figure><img width="1400" height="753" src="assets/img/dijkstra-network.jpg" alt="Example road network diagram used for the Dijkstra shortest-path test case" loading="lazy"><figcaption>Test road network (nodes = intersections, edges = roads)</figcaption></figure>
+            <figure><img width="622" height="567" src="assets/img/dijkstra-benchmark.png" alt="Terminal output showing Dijkstra benchmark execution times at 10, 50, and 100 nodes" loading="lazy"><figcaption>Benchmark output across graph sizes</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- PROJECT 2: TSP DP -->
+      <details class="project" id="tsp-dp">
+        <summary class="project-head">
+          <div class="project-titles">
+            <h3>Sales Route Optimization via Held–Karp Dynamic Programming</h3>
+            <div class="project-course">Analysis of Algorithms</div>
+            <p class="project-summary">Exact Traveling Salesperson solver using bitmask DP, compared empirically against brute-force factorial growth.</p>
+          </div>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+        </summary>
+        <div class="project-body">
+          <p>Solved the Traveling Salesperson Problem for a nationwide sales team routing scenario using
+          the Held–Karp dynamic programming algorithm, which finds the exact minimum-cost route by
+          decomposing the problem into overlapping subproblems over bitmasked subsets of visited cities.</p>
+
+          <h4>Recurrence</h4>
+          <pre><code>C(S, i) = min over j in S, j != i of ( C(S \ {i}, j) + cost(j, i) )
+Base case: C({1, i}, i) = cost(1, i) for all i != 1</code></pre>
+
+          <h4>Implementation</h4>
+          <pre><code>def solve_tsp_dynamic_programming(distance_matrix):
+    n = len(distance_matrix)
+    if n <= 1:
+        return distance_matrix[0][0] if n else 0
+
+    num_states = 1 << n
+    memo = [[float('inf')] * n for _ in range(num_states)]
+
+    for i in range(1, n):
+        memo[(1 << 0) | (1 << i)][i] = distance_matrix[0][i]
+
+    for subset_size in range(3, n + 1):
+        for mask in range(num_states):
+            if not (mask & 1) or bin(mask).count('1') != subset_size:
+                continue
+            for i in range(1, n):
+                if not (mask & (1 << i)):
+                    continue
+                prev_mask = mask ^ (1 << i)
+                min_dist = float('inf')
+                for j in range(1, n):
+                    if j == i or not (prev_mask & (1 << j)):
+                        continue
+                    cost = memo[prev_mask][j] + distance_matrix[j][i]
+                    min_dist = min(min_dist, cost)
+                memo[mask][i] = min_dist
+
+    full_mask = (1 << n) - 1
+    return min(memo[full_mask][i] + distance_matrix[i][0] for i in range(1, n))</code></pre>
+
+          <h4>Brute-force vs. dynamic programming</h4>
+          <p>Brute-force permutation search runs in O(n!) time; Held–Karp runs in O(n²·2ⁿ). At 15 cities,
+          brute force must check over 14 billion complete tours — at 100,000 checks/second, nearly 40 hours.
+          The DP approach checks roughly 7.3 million state transitions instead, finishing in a fraction of
+          a second.</p>
+          <div class="result-box">Trade-off: DP guarantees the global optimum and avoids factorial blow-up, but its O(n·2ⁿ) memory table becomes the practical bottleneck past ~25 cities.</div>
+
+          <div class="shot-grid" style="grid-template-columns:1fr;">
+            <figure><img width="619" height="566" src="assets/img/tsp-output.png" alt="Terminal output showing the calculated optimal tour distance from the TSP dynamic programming solver" loading="lazy"><figcaption>Optimal tour distance — example run</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- PROJECT 3: Neural Networks -->
+      <details class="project" id="neural-networks">
+        <summary class="project-head">
+          <div class="project-titles">
+            <h3>Neural Networks: Logic Gates to Telecom Churn Prediction</h3>
+            <div class="project-course">Introduction to Data Mining and Machine Learning</div>
+            <p class="project-summary">From a single perceptron modeling AND/OR/NOT/XOR to a full MLP predicting customer churn on a real telecom dataset (79.5% accuracy).</p>
+          </div>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+        </summary>
+        <div class="project-body">
+          <p>Explored neural network fundamentals in two parts: first showing why a single neuron can
+          model AND / OR / NOT (linearly separable) but fails on XOR, then building a full Multi-Layer
+          Perceptron to predict customer churn on a real telecom dataset.</p>
+
+          <h4>Part 1 — Logic gates with a single neuron and an MLP for XOR</h4>
+          <pre><code>def single_neuron(inputs, weights, bias):
+    total = np.dot(inputs, weights) + bias
+    return 1 if total >= 0 else 0
+
+# AND gate: weights=[1,1], bias=-1.5  -> correctly classifies all 4 cases
+# XOR needs a hidden layer:
+xor_model = MLPClassifier(
+    hidden_layer_sizes=(2,), activation='logistic',
+    solver='lbfgs', max_iter=2000, random_state=42
+)
+xor_model.fit(X_xor, y_xor)</code></pre>
+          <p>Result: AND, OR, and NOT were all classified correctly by the single neuron. XOR required
+          the hidden-layer MLP — the single-layer version, as expected, could not separate it.</p>
+
+          <h4>Part 2 — Churn prediction ANN</h4>
+          <pre><code>model = Pipeline(steps=[
+    ("preprocessor", preprocessor),  # StandardScaler + OneHotEncoder
+    ("classifier", MLPClassifier(
+        hidden_layer_sizes=(16, 8),
+        activation="relu",
+        solver="adam",
+        max_iter=1000,
+        early_stopping=True,
+        random_state=42
+    ))
+])
+model.fit(X_train, y_train)</code></pre>
+
+          <div class="result-box">Overall accuracy: 79.46% &nbsp;·&nbsp; Non-churn class: precision 0.85 / recall 0.88 &nbsp;·&nbsp; Churn class: precision 0.63 / recall 0.55</div>
+          <p>The model was noticeably stronger at identifying loyal customers than active churn risks —
+          a common pattern with imbalanced classes, and a concrete example of why accuracy alone doesn't
+          tell the full story of a classifier's performance.</p>
+
+          <div class="shot-grid">
+            <figure><img width="615" height="570" src="assets/img/nn-logic-gates.png" alt="Terminal output showing AND, OR, NOT, and XOR gate predictions from the neural network models" loading="lazy"><figcaption>Logic gate predictions vs. actual</figcaption></figure>
+            <figure><img width="615" height="563" src="assets/img/nn-churn.png" alt="Terminal output showing churn prediction accuracy, confusion matrix, and classification report" loading="lazy"><figcaption>Churn model evaluation output</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- PROJECT 4: Clustering -->
+      <details class="project" id="clustering">
+        <summary class="project-head">
+          <div class="project-titles">
+            <h3>Customer Segmentation with Clustering + a Reinforcement Learning Framework</h3>
+            <div class="project-course">Introduction to Data Mining and Machine Learning</div>
+            <p class="project-summary">K-Means, Hierarchical, and DBSCAN clustering compared via Silhouette Score and Davies–Bouldin Index, plus an RL design for dynamic discount policies.</p>
+          </div>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+        </summary>
+        <div class="project-body">
+          <p>Segmented retail customers by Age, Annual Spending, and Purchases per Month using three
+          unsupervised clustering algorithms, chosen specifically because no labeled customer categories
+          existed — the task was to discover hidden structure, not predict a known class.</p>
+
+          <h4>Choosing k with the Elbow Method</h4>
+          <pre><code>wcss_values = []
+for k in range(1, 6):
+    kmeans_test = KMeans(n_clusters=k, random_state=42, n_init=10)
+    kmeans_test.fit(X_scaled)
+    wcss_values.append(kmeans_test.inertia_)
+# WCSS: 30.00 -> 5.30 -> 1.72 -> 1.15 -> 0.63
+# Sharp drop after k=2, diminishing returns after -> k=2 selected</code></pre>
+
+          <h4>Comparing three algorithms</h4>
+          <pre><code>kmeans = KMeans(n_clusters=2, random_state=42, n_init=10)
+hierarchical = AgglomerativeClustering(n_clusters=2)
+dbscan = DBSCAN(eps=1.2, min_samples=2)
+
+sil_kmeans = silhouette_score(X_scaled, df['KMeans_Cluster'])
+# ... same for hierarchical and DBSCAN</code></pre>
+
+          <div class="result-box">All three algorithms converged on identical groupings — Silhouette Score 0.6727, Davies–Bouldin Index 0.3638 — separating customers into younger/frequent/low-spend vs. older/infrequent/high-spend segments.</div>
+
+          <h4>Extension: Reinforcement Learning for dynamic promotions</h4>
+          <p>Designed (conceptually) how the segmentation could feed a reinforcement-learning agent that
+          adjusts discount levels per segment over time — framing the agent, environment, action space
+          (discount tiers), and reward signal (completed sale vs. unused discount vs. no purchase), and
+          contrasting this with the supervised/unsupervised paradigms used elsewhere in the assignment.</p>
+
+          <div class="shot-grid">
+            <figure><img width="608" height="474" src="assets/img/cluster-elbow.png" alt="Elbow method plot showing WCSS decreasing as the number of clusters increases" loading="lazy"><figcaption>Elbow Method plot for optimal k</figcaption></figure>
+            <figure><img width="613" height="570" src="assets/img/cluster-eval.png" alt="Table comparing Silhouette Score and Davies-Bouldin Index across K-Means, Hierarchical, and DBSCAN" loading="lazy"><figcaption>Cross-algorithm evaluation metrics</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- PROJECT 5: Iris classification -->
+      <details class="project" id="iris-classification">
+        <summary class="project-head">
+          <div class="project-titles">
+            <h3>Benchmarking Six Classification Algorithms on the Iris Dataset</h3>
+            <div class="project-course">Introduction to Data Mining and Machine Learning</div>
+            <p class="project-summary">Decision Tree, Rule-Based, Naïve Bayes, Logistic Regression, KNN, and SVM compared on the same 150-sample dataset with confusion matrices and accuracy scores.</p>
+          </div>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+        </summary>
+        <div class="project-body">
+          <p>Built and compared six different classification approaches — spanning rule-based, probabilistic,
+          and distance/optimization-based paradigms — on the classic Iris flower dataset, to see how
+          differently structured algorithms handle the same classification task.</p>
+
+          <h4>Example — the simplest baseline: a hand-written rule</h4>
+          <pre><code>def rule_classifier(features):
+    petal_length = features[2]
+    if petal_length < 2:
+        return 0      # Setosa
+    elif petal_length < 5:
+        return 1      # Versicolor
+    else:
+        return 2      # Virginica</code></pre>
+
+          <h4>Example — Support Vector Machine</h4>
+          <pre><code>svm_model = SVC(kernel="linear")
+svm_model.fit(X_train, y_train)
+svm_prediction = svm_model.predict(X_test)</code></pre>
+
+          <p>Each model — Decision Tree, a hand-coded Rule-Based classifier, Gaussian Naïve Bayes,
+          Logistic Regression, K-Nearest Neighbors, and a linear-kernel SVM — was evaluated with a
+          confusion matrix, precision, recall, and F1-score on an 80/20 train/test split.</p>
+
+          <div class="result-box">All six models achieved similarly high accuracy, since Iris's four features cleanly separate its three classes — even the simple hand-written rule performed competitively, underscoring how dataset structure can matter more than model choice.</div>
+
+          <div class="shot-grid">
+            <figure><img width="617" height="571" src="assets/img/iris-dataset.png" alt="Terminal output showing the first rows of the Iris dataset and its class distribution" loading="lazy"><figcaption>Dataset loading &amp; class distribution</figcaption></figure>
+            <figure><img width="619" height="560" src="assets/img/iris-accuracy.png" alt="Terminal output comparing accuracy scores across six classification models" loading="lazy"><figcaption>Final accuracy comparison across all six models</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- PROJECT 6: HTTP/TCP -->
+      <details class="project" id="network-analysis">
+        <summary class="project-head">
+          <div class="project-titles">
+            <h3>HTTP &amp; TCP Traffic Analysis with Wireshark</h3>
+            <div class="project-course">Advanced Networking and Data Security</div>
+            <p class="project-summary">Packet-level capture and analysis identifying the TCP handshake, client OS fingerprint, and network hardware vendors from raw traffic.</p>
+          </div>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+        </summary>
+        <div class="project-body">
+          <p>Acting as a network engineer analyzing a client's traffic, captured a live HTTP session in
+          Wireshark and worked backward from the raw packets to reconstruct connection details that
+          aren't visible from a browser alone.</p>
+
+          <h4>What the capture revealed</h4>
+          <ul>
+            <li>The TCP 3-way handshake (SYN → SYN-ACK → ACK) establishing the connection</li>
+            <li>The local host's IP (<code>192.168.1.164</code>) and its network interface vendor (Apple) from the Ethernet frame</li>
+            <li>The gateway device's hardware vendor (Vantiva) from its MAC address</li>
+            <li>Client OS platform (macOS) and browser language (en-US), both readable from HTTP request headers</li>
+          </ul>
+
+          <div class="result-box">Even a single page load exposes a surprising amount of client-side metadata purely from packet headers — a good practical illustration of why header hygiene matters for privacy-conscious services.</div>
+
+          <div class="shot-grid">
+            <figure><img width="1400" height="1127" src="assets/img/tcp-handshake.jpg" alt="Wireshark packet capture showing the TCP three-way handshake and TLS negotiation" loading="lazy"><figcaption>Captured TCP handshake &amp; TLS negotiation</figcaption></figure>
+            <figure><img width="1400" height="1739" src="assets/img/http-headers.jpg" alt="Wireshark view of an HTTP request showing client OS and browser language headers" loading="lazy"><figcaption>HTTP headers revealing OS &amp; language</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- PROJECT 7: iOS BMI -->
+      <details class="project" id="ios-bmi">
+        <summary class="project-head">
+          <div class="project-titles">
+            <h3>iOS BMI Calculator — SwiftUI + OOP</h3>
+            <div class="project-course">Mobile Application Development</div>
+            <p class="project-summary">A working SwiftUI app separating business logic from UI, alongside a written comparison of Swift structs vs. classes.</p>
+          </div>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+        </summary>
+        <div class="project-body">
+          <p>Built a small iOS app in SwiftUI that calculates BMI from user-entered age, weight, and
+          height, cleanly separating the calculation logic (a plain Swift class) from the presentation
+          layer (a SwiftUI view) — an explicit exercise in object-oriented separation of concerns.</p>
+
+          <h4>Business logic layer</h4>
+          <pre><code>class BMICalculator {
+    var age: Int
+    var gender: String
+    var weight: Double // kg
+    var height: Double // meters
+
+    func calculateBMIValue() -> Double {
+        guard height > 0 else { return 0.0 }
+        return weight / (height * height)
+    }
+
+    func determineCategory(bmi: Double) -> BMICategory {
+        if bmi < 18.5 { return .underweight }
+        else if bmi < 24.9 { return .normal }
+        else { return .overweight }
+    }
+}</code></pre>
+
+          <p>Also covered in the same assignment: a comparison of Swift structs (value types, copied on
+          assignment, no inheritance) vs. classes (reference types, shared instances, support
+          inheritance) — illustrated with a side-by-side code example showing how mutating a copied
+          struct leaves the original untouched, while mutating a class instance affects every reference
+          to it.</p>
+
+          <div class="shot-grid" style="grid-template-columns:1fr; max-width:280px;">
+            <figure><img width="254" height="409" src="assets/img/bmi-calculator.png" alt="iOS BMI Calculator app showing a calculated BMI of 28.4 and an overweight classification" loading="lazy"><figcaption>Live app — overweight classification result</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+      <!-- PROJECT 8: Bash automation -->
+      <details class="project" id="bash-automation">
+        <summary class="project-head">
+          <div class="project-titles">
+            <h3>Automated Daily Report Download &amp; Scheduling</h3>
+            <div class="project-course">Operating Systems 2</div>
+            <p class="project-summary">A Bash script that downloads, timestamps, and organizes a daily report file, documented for scheduling via cron or Windows Task Scheduler.</p>
+          </div>
+          <svg class="chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 6 6 6-6 6"/></svg>
+        </summary>
+        <div class="project-body">
+          <p>Wrote a Bash script to automate a recurring e-commerce operations task: downloading a daily
+          sales report, saving it with a date-stamped filename to avoid overwrites, and verifying the
+          download succeeded — then documented how to schedule it to run unattended.</p>
+
+          <pre><code>#!/bin/bash
+REPORT_URL="https://example.com/Sample-Spreadsheet-1000-rows.csv"
+DESTINATION_FOLDER="$HOME/SalesReports"
+FILENAME="Sample-Spreadsheet-$(date +%Y-%m-%d).csv"
+
+mkdir -p "$DESTINATION_FOLDER"
+
+wget -O "$DESTINATION_FOLDER/$FILENAME" "$REPORT_URL"
+
+if [ -f "$DESTINATION_FOLDER/$FILENAME" ]; then
+    echo "Report downloaded successfully to $DESTINATION_FOLDER/$FILENAME"
+else
+    echo "Download failed. Please check the URL or internet connection."
+    exit 1
+fi</code></pre>
+
+          <p>Documented scheduling via <code>crontab -e</code> on macOS/Linux (<code>0 8 * * * /bin/bash /path/to/script.sh</code>
+          for a daily 8am run) and via Windows Task Scheduler as a cross-platform alternative.</p>
+
+          <div class="shot-grid">
+            <figure><img width="577" height="375" src="assets/img/bash-homebrew.png" alt="Terminal showing Homebrew dependency installation for the script's requirements" loading="lazy"><figcaption>Environment setup (Homebrew)</figcaption></figure>
+            <figure><img width="577" height="375" src="assets/img/bash-script.png" alt="Terminal showing the bash script running successfully" loading="lazy"><figcaption>Script execution</figcaption></figure>
+          </div>
+        </div>
+      </details>
+
+    </section>
+
+    <section id="coursework">
+      <p class="eyebrow">06 — all coursework</p>
+      <h2>All Coursework</h2>
+      <p class="muted" style="margin-bottom:24px; font-size:.94rem;">The complete set of coursework this portfolio draws from, organized by course.</p>
+
+      <div class="coursework-course">
+        <h3>Advanced Networking and Data Security</h3>
+        <div class="cw-grid">
+          <div class="cw-item"><h4>Wireshark Installation &amp; Setup</h4><p>Environment setup, interface walkthrough, and a first live packet capture on the UoPeople student portal.</p></div>
+          <div class="cw-item"><h4>VPNs &amp; Packet Protocol Analysis</h4><p>Protocol breakdown of 8,433 captured packets across HTTP, DNS, ARP, TCP, UDP, and TLS.</p></div>
+          <div class="cw-item"><h4>ICMP Traffic Analysis</h4><p>Ping and traceroute packet inspection, identifying request/reply types and hop-by-hop routing.</p></div>
+        </div>
+      </div>
+
+      <div class="coursework-course">
+        <h3>Operating Systems 2</h3>
+        <div class="cw-grid">
+          <div class="cw-item"><h4>File Systems, RPC &amp; Unix Security</h4><p>Technical documentation covering file system internals, remote procedure calls, and Unix/Linux permission models.</p></div>
+        </div>
+      </div>
+
+      <div class="coursework-course">
+        <h3>Analysis of Algorithms</h3>
+        <div class="cw-grid">
+          <div class="cw-item"><h4>Knapsack &amp; Subset Sum (Backtracking)</h4><p>Exact backtracking solutions to 0/1 knapsack and subset-sum, integrated into one gift-basket optimizer.</p></div>
+          <div class="cw-item"><h4>Task Scheduling (Greedy / NP-Hard)</h4><p>Classified parallel-machine scheduling as NP-hard, then implemented a Longest-Processing-Time greedy solver.</p></div>
+        </div>
+      </div>
+
+      <div class="coursework-course">
+        <h3>Mobile Applications</h3>
+        <div class="cw-grid">
+          <div class="cw-item"><h4>Biometric Attendance App (Kotlin)</h4><p>Specification for an Android check-in/out app using BiometricPrompt, GPS geofencing, and Retrofit-based networking with exception handling.</p></div>
+        </div>
+      </div>
+
+      <div class="coursework-course">
+        <h3>Database 2</h3>
+        <div class="cw-grid">
+          <div class="cw-item"><h4>Classification Tree for Grades</h4><p>A hand-built decision tree modeling course grade outcomes from assignment, exam, and participation scores.</p></div>
+        </div>
+      </div>
+
+      <div class="coursework-course">
+        <h3>CS 1101 — Programming Fundamentals</h3>
+        <div class="cw-grid">
+          <div class="cw-item"><h4>Vim/Emacs &amp; ASCII vs. Executable Files</h4><p>Terminal-based editing fundamentals and the distinction between human-readable and binary file formats.</p></div>
+        </div>
+      </div>
+
+      <div class="coursework-course">
+        <h3>Programming</h3>
+        <div class="cw-grid">
+          <div class="cw-item"><h4>Dictionaries &amp; Inverted Dictionaries</h4><p>Building letter-frequency histograms and inverting them to group keys by shared value.</p></div>
+          <div class="cw-item"><h4>Python Fundamentals Practice</h4><p>Interactive-shell exercises covering operators, recursion, exception handling, and string formatting.</p></div>
+        </div>
+      </div>
+
+    </section>
+
+    <section id="contact">
+      <p class="eyebrow">07 — contact</p>
+      <h2>Get in Touch</h2>
+      <div class="card">
+        <p style="margin:0 0 4px;">I'm open to opportunities in backend development, cybersecurity, cloud security, and technical project coordination.</p>
+        <p class="muted" style="margin:0;">Based in Edmonton, AB. Feel free to reach out directly or connect on LinkedIn / GitHub.</p>
+        <div class="contact-row">
+          <a href="mailto:elvia82villa@gmail.com">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" stroke-linejoin="round"/><path d="m4 4 8 8 8-8" stroke-linejoin="round"/></svg>
+            elvia82villa@gmail.com
+          </a>
+          <a href="https://github.com/elvia82villa-bit" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.5 0-.24-.01-.87-.01-1.71-2.78.62-3.37-1.36-3.37-1.36-.46-1.19-1.11-1.51-1.11-1.51-.91-.64.07-.63.07-.63 1 .07 1.53 1.05 1.53 1.05.89 1.56 2.34 1.11 2.91.85.09-.66.35-1.11.63-1.37-2.22-.26-4.56-1.14-4.56-5.07 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.31.1-2.72 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.46.1 2.72.64.72 1.03 1.63 1.03 2.75 0 3.94-2.34 4.8-4.57 5.06.36.32.68.94.68 1.9 0 1.37-.01 2.47-.01 2.81 0 .28.18.61.69.5A10.26 10.26 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg>
+            github.com/elvia82villa-bit
+          </a>
+          <a href="https://www.linkedin.com/in/dora-orozco-villalobos-2966a8ba/" target="_blank" rel="noopener">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M6.94 5a2 2 0 1 1-4-.002 2 2 0 0 1 4 .002ZM7 8.48H3V21h4V8.48Zm6.32 0H9.34V21h3.94v-6.57c0-3.66 4.77-3.96 4.77 0V21H22v-7.93c0-6.17-7.06-5.94-8.68-2.91V8.48Z"/></svg>
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      Dora Orozco Villalobos — Computer Science Portfolio · Built 2026
+    </footer>
+
+  </main>
+</div>
+
+<script>
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuToggle.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', isOpen);
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  // Active nav link highlighting on scroll
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.side-nav a');
+  const setActive = () => {
+    let currentId = '';
+    const scrollPos = window.scrollY + 120;
+    sections.forEach(sec => {
+      if (sec.offsetTop <= scrollPos) currentId = sec.id;
+    });
+    navLinks.forEach(link => {
+      link.classList.toggle('active', link.getAttribute('href') === '#' + currentId);
+    });
+  };
+  window.addEventListener('scroll', setActive, { passive: true });
+  setActive();
+</script>
+
+</body>
+</html>
